@@ -22,7 +22,10 @@ const RouterProvider = ({ routeList, children }: {
     const route = locationToRoute(location);
     setRoute(route);
   };
-  const is404 = Object.keys(routeList).map((key) => routeList[key].path).includes(route.path);  
+  const isValidPath = Object.keys(routeList).map((key) => routeList[key].path).includes(route.path);  
+
+  console.log('isValidPath', isValidPath);
+  
 
   useLayoutEffect(() => {
     // Subscribe to listener
@@ -35,7 +38,7 @@ const RouterProvider = ({ routeList, children }: {
 
   return (
     <RouterContext.Provider value={{ route, ...routeList }}>
-      {is404 ? <NotFoundView /> : children}
+      {isValidPath ?  children : <NotFoundView />}
     </RouterContext.Provider>
   );
 };

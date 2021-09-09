@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 const LoadingView = ({ text = "...loading" }) => (
 
-    <div className="section">
+    <div className="section center">
       <p className="bullet-text text-capitlize">{text}</p>
     </div>
 

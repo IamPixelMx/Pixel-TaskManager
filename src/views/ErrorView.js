@@ -2,10 +2,10 @@ import React from "react";
 import PropTypes from "prop-types";
 
 const ErrorView = (errorMsg) => (
-  <React.Fragment>
+  <div className="section center">
     <h1>Error</h1>
     <p className="bullet-text">{errorMsg}</p>
-  </React.Fragment>
+  </div>
 );
 
 export default ErrorView;

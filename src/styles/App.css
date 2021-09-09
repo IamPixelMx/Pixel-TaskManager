@@ -47,6 +47,10 @@ p {
   width: 70px;
 }
 
+.center {
+  text-align: center;
+}
+
 .pointer,
 .logo,
 .btn-link,

@@ -5,15 +5,16 @@ type Props = {
   to: string;
   children: React.ReactNode;
   onClick?: (e: React.MouseEvent<Element, MouseEvent>) => void;
+  className?: string;
 };
 
-const Link = ({ to, children, onClick, ...props }: Props) => {
+const Link = ({ to, children, onClick, className, ...props }: Props) => {
   const { route } = useRouter();
 
   const handleClick = (e: React.MouseEvent) => {
     e.preventDefault();
 
-    if (route.path === to) {      
+    if (route.path === to) {
       // If it's not a valid path function will not trigger.
       return;
     }
@@ -24,9 +25,9 @@ const Link = ({ to, children, onClick, ...props }: Props) => {
   };
 
   return (
-      <a className="pointer" {...props} onClick={handleClick}>
-        {children}
-      </a>
+    <a className={`pointer ${className}`}{...props} onClick={handleClick}>
+      {children}
+    </a>
   );
 }
 
