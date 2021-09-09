@@ -2,9 +2,13 @@
 
 <br />
 <div align="center">
-    <img src="public/logo.webp" alt="Logo" width="140">
-
   <h3 align="center"><b>Task Manager</b></h3>
+<a href="https://pixel-task-manager.herokuapp.com/">
+    <img src="public/logo.webp" alt="Logo" width="140">
+</a>
+</div>
+<div align="center">
+  <a href="https://pixel-task-manager.herokuapp.com/">Go to the site</a>
 </div>
 <br/>
 <div>
