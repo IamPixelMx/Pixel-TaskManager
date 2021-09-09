@@ -1,26 +1,37 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useCallback } from "react";
+import { HomeView, GroupExpandedView, LoadingView, ErrorView } from "views";
+import { useStore, useActions } from "store";
+import "styles/App.min.css";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App = () => {
+  const { fetchTasksStart, fetchTasksSuccess, fetchTasksFail } = useActions();
+  const {
+    state: { tasks, currentTaskGroup, loading, error, errorMsg },
+  } = useStore();
+
+  const fetchData = useCallback(() => {
+    fetchTasksStart();
+    fetch("data.json")
+      .then(res => res.json())
+      .then(fetchTasksSuccess)
+      .catch(fetchTasksFail);
+  }, // eslint-disable-next-line
+  []);
+
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]);
+
+  if (loading) return <LoadingView />;
+
+  if (error) return <ErrorView errorMsg={errorMsg} />;
+
+  if (currentTaskGroup)
+    return (
+      <GroupExpandedView tasks={tasks} currentTaskGroup={currentTaskGroup} />
+    );
+
+  return <HomeView tasks={tasks} />;
+};
 
 export default App;

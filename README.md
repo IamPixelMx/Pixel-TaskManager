@@ -1,46 +1,61 @@
-# Getting Started with Create React App
+># Hi👋, Welcome to Pixel | Task Manager!  🗓
+</br>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+My name is Itzel! 🙋🏻‍♀️  Pixel | Task Manager is a web app to manage tasks from different task groups and, the tasks can have dependencies on one another (i.e. if task X depends on task Y, task X cannot be completed until task Y is completed). 
 
-## Available Scripts
+I created this project using only the libraries included within React. It was a great challenge and I had a lot of fun making this proyect. Here are some of my process notes: 
 
-In the project directory, you can run:
+</br>
 
-### `npm start`
+### **Build React-based UI**
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+The UI consists of 2 screens:
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+* **Overview**: Displays a list of all the groups along with their completion status. Clicking on 
+  a group should render the detail screen.
 
-### `npm test`
+* **Detail**: Displays a list of all the tasks in the selected group and allows the user to toggle 
+  the completion status of unlocked tasks.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+</br>
 
-### `npm run build`
+### **Build simple UI identity**
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Set a simple UI and identity by defining a name for the web app and adding some UI elements, such as, a nav with the brand logo, a favicon and some simple animations, to enchance the experience. 
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+</br>
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### **Use modules and tools already included within React**
 
-### `npm run eject`
+Create the app state management using React Context and React Reducer
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Create custom hooks to create actions that will help us to manipulate the state.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+</br>
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### **Improve developer experience**
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Add a `jsconfig.json` file to make the imports scripts easier to read for the developer.
 
-## Learn More
+Eslint disabled two lines of code since I cannot add an external function inside a dependency array otherwise it would generate an infinite loop of re-renders.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+</br>
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### **Design Database Schema**
+
+Design a schema in SQL to store the task list data. You can add the SQL code needed to create
+the schema to _schema.sql_. The schema should define all tables, columns, and constraints needed
+to store the task list data.
+
+</br>
+
+> Some things to keep in mind:
+
+* Locked tasks cannot have their completion status toggled
+* Tasks remain locked until all of their dependencies have been completed
+
+</br> 
+
+Hope you enjoy it! 🚀
+
+
