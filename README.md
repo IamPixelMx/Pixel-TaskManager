@@ -21,7 +21,7 @@ Some things to keep in mind:
 
 * Locked tasks cannot have their completion status toggled
 * Tasks remain locked until all of their dependencies have been completed
-* This project only used an extra dependency(history) to those already included within React.
+* This project only used an extra dependency(`history`) to those already included within React.
 
  It was a great challenge and I had a lot of fun making this proyect. I hope you enjoy it! 🚀
  </p>
