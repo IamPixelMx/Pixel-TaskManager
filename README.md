@@ -1,9 +1,17 @@
 ># Hi👋, Welcome to Pixel | Task Manager!  🗓
 </br>
 
-My name is Itzel! 🙋🏻‍♀️  Pixel | Task Manager is a web app to manage tasks from different task groups and, the tasks can have dependencies on one another (i.e. if task X depends on task Y, task X cannot be completed until task Y is completed). 
+My name is Itzel! 🙋🏻‍♀️  **Pixel | Task Manager** is a web app to manage tasks from different task groups and, the tasks can have dependencies on one another (i.e. if task X depends on task Y, task X cannot be completed until task Y is completed). 
 
-I created this project using only the libraries included within React. It was a great challenge and I had a lot of fun making this proyect. Here are some of my process notes: 
+</br> 
+
+> Some things to keep in mind:
+
+* Locked tasks cannot have their completion status toggled
+* Tasks remain locked until all of their dependencies have been completed
+* This project only use modules and tools already included within React.
+
+ It was a great challenge and I had a lot of fun making this proyect.Hope you enjoy it! 🚀
 
 </br>
 
@@ -49,13 +57,28 @@ to store the task list data.
 
 </br>
 
-> Some things to keep in mind:
 
-* Locked tasks cannot have their completion status toggled
-* Tasks remain locked until all of their dependencies have been completed
+## Available Scripts
 
-</br> 
+In the project directory, you can run:
 
-Hope you enjoy it! 🚀
+### `npm start`
 
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
+The page will reload if you make edits.\
+You will also see any lint errors in the console.
+
+### `npm test`
+
+Launches the test runner in the interactive watch mode.\
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+
+### `npm run build`
+
+Builds the app for production to the `build` folder.\
+It correctly bundles React in production mode and optimizes the build for the best performance.
+
+The build is minified and the filenames include the hashes.\
+Your app is ready to be deployed!
