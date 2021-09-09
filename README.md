@@ -93,7 +93,7 @@ Create custom hooks and components such as _Link_ to manipulate the browse histo
 
 ### **Developer Experience**
 
-Add a `jsconfig.json` file to make the imports scripts easier to read for the developer.
+Add `baseUrl` property to `tsconfig.json` file to make the imports scripts easier to read for the developer.
 
 Eslint disabled two lines of code since I cannot add an external function inside a dependency array otherwise it would generate an infinite loop of re-renders.
 

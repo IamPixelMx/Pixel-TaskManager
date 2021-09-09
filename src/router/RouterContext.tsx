@@ -22,10 +22,8 @@ const RouterProvider = ({ routeList, children }: {
     const route = locationToRoute(location);
     setRoute(route);
   };
-  const isValidPath = Object.keys(routeList).map((key) => routeList[key].path).includes(route.path);  
-
-  console.log('isValidPath', isValidPath);
   
+  const isValidPath = Object.keys(routeList).map((key) => routeList[key].path).includes(route.path);  
 
   useLayoutEffect(() => {
     // Subscribe to listener
