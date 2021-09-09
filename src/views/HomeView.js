@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
-import { Layout, TaskGroupInfo } from "components";
+import { TaskGroupInfo } from "components";
 import { getGroupProgress, getGroupsList, getGroupTasks } from "utils";
 
 const HomeView = ({ tasks, title = "things to do" }) => {
@@ -24,11 +24,11 @@ const HomeView = ({ tasks, title = "things to do" }) => {
   }, [tasks]);
 
   return (
-    <Layout>
+    <React.Fragment>
       <h1 className="text-capitalize">{title}</h1>
       {groupsInfo.length &&
         groupsInfo.map((props, i) => <TaskGroupInfo key={i} {...props} />)}
-    </Layout>
+    </React.Fragment>
   );
 };
 

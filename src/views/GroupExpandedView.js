@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
+import { initialRoutes } from "router";
 import PropTypes from "prop-types";
-import { Layout, TaskItem } from "components";
-import { useActions } from "store";
+import { TaskItem, Link } from "components";
 import { getDependecyTasks, getGroupTasks } from "utils";
 
 const GroupExpandedView = ({
@@ -9,12 +9,11 @@ const GroupExpandedView = ({
   currentTaskGroup,
   linkText = "all groups",
 }) => {
-  const { showAllGroups } = useActions();
   const [currentTasks, setCurrentTasks] = useState([]);
 
   const checkIfTaskIsLocked = (dependencyTasks) =>
     dependencyTasks.some(({ completedAt }) => completedAt === null);
-  
+
   useEffect(() => {
 
     const currentGroupTasks = getGroupTasks(currentTaskGroup, tasks);
@@ -31,18 +30,18 @@ const GroupExpandedView = ({
   }, [tasks, currentTaskGroup]);
 
   return (
-    <Layout>
+    <React.Fragment>
       <div className="header">
         <h1 className="text-capitalize">{currentTaskGroup}</h1>
-        <button className="btn-link text-uppercase" onClick={showAllGroups}>
+        <Link to={initialRoutes.home.path} className="btn-link text-uppercase">
           {linkText}
-        </button>
+        </Link>
       </div>
       <ul className="todo-list">
         {currentTasks.length &&
           currentTasks.map((task) => <TaskItem key={task.id} {...task} />)}
       </ul>
-    </Layout>
+    </React.Fragment>
   );
 };
 

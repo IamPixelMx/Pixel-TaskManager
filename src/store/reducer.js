@@ -2,8 +2,6 @@ import {
   FETCH_TASKS_START,
   FETCH_TASKS_SUCCESS,
   FETCH_TASKS_FAIL,
-  SHOW_ALL_GROUPS,
-  SHOW_TASK_GROUP,
   TOGGLE_TASK,
 } from "./constants";
 
@@ -32,15 +30,6 @@ const reducer = (state, { type, payload = {} }) => {
         errorMsg: payload.message || "Sorry, there was an error",
       };
 
-    case SHOW_ALL_GROUPS:
-      return {
-        ...state,
-        currentTaskGroup: "",
-      };
-
-    case SHOW_TASK_GROUP:
-      return { ...state, currentTaskGroup: payload };
-
     case TOGGLE_TASK:
       return {
         ...state,
@@ -52,9 +41,13 @@ const reducer = (state, { type, payload = {} }) => {
   }
 };
 
+const getChildTasks = (tasks, id) => tasks.filter(({ dependencyIds }) => dependencyIds.includes(id));
+
 const getNewTaskArray = (tasks, { id, completedAt }) => {
+  const childTasksArr = getChildTasks(tasks, id);
+  const childTaskIds = childTasksArr.length === 0 ? null : childTasksArr.map(({ id }) => id);
   const newTaskArray = tasks.map((task) =>
-    task.id === id ? { ...task, completedAt } : task
+    task.id === id ? { ...task, completedAt } : completedAt === null && childTaskIds && childTaskIds.includes(task.id) ? { ...task, completedAt } : task
   );
   return newTaskArray;
 };

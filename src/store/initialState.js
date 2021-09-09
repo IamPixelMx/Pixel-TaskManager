@@ -1,6 +1,5 @@
 const initialState = {
   tasks: [],
-  currentTaskGroup: "",
   loading: false,
   error: false,
   errorMsg:"",

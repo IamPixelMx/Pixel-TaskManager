@@ -5,8 +5,6 @@ import {
   FETCH_TASKS_START,
   FETCH_TASKS_SUCCESS,
   FETCH_TASKS_FAIL,
-  SHOW_ALL_GROUPS,
-  SHOW_TASK_GROUP,
   TOGGLE_TASK,
 } from "./constants";
 
@@ -31,10 +29,6 @@ const useActions = () => {
         type: FETCH_TASKS_FAIL,
         payload,
       }),
-
-    showAllGroups: () => dispatch({ type: SHOW_ALL_GROUPS }),
-
-    showTaskGroup: (payload) => dispatch({ type: SHOW_TASK_GROUP, payload }),
 
     toggleTask: (payload) => dispatch({ type: TOGGLE_TASK, payload }),
   };

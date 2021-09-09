@@ -1,18 +1,23 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { useActions } from "store";
+import { initialRoutes } from 'router';
+import { useStore } from "store";
+import { LoadingView, ErrorView } from "views";
+import { Link } from "components"
 
 const Layout = ({ children }) => {
-  const { showAllGroups } = useActions();
+  const {
+    state: { loading, error, errorMsg },
+  } = useStore();
 
   return (
     <React.Fragment>
       <nav>
-        <button onClick={showAllGroups} aria-label="home-button">
+        <Link to={initialRoutes.home.path} role="link" aria-name="home-link">
           <img src="/logo.webp" alt="logo" className="logo" />
-        </button>
+        </Link>
       </nav>
-      <div className="container">{children}</div>
+      <div className="container">{error ? <ErrorView errorMsg={errorMsg} /> : loading ? <LoadingView /> : children}</div>
     </React.Fragment>
   );
 };

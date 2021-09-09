@@ -17,7 +17,7 @@ Some things to keep in mind:
 
 * Locked tasks cannot have their completion status toggled
 * Tasks remain locked until all of their dependencies have been completed
-* This project only use modules and tools already included within React.
+* This project only used an extra dependency(history) to those already included within React.
 
  It was a great challenge and I had a lot of fun making this proyect. I hope you enjoy it! 🚀
  </p>
@@ -36,9 +36,11 @@ Some things to keep in mind:
 [**Notes**](#notes)
   - [UI](#ui)
   - [UI Identity](#ui-identity)
+  - [Router](#router)
   - [State Management](#state-management)
   - [Developer Experience](#developer-experience)
   - [Database Schema](#database-schema)
+  - [Biggest Challenges](#biggest-challenges)
   
 [**Scripts**](#scripts)
   - [`npm start`](#npm-start)
@@ -71,9 +73,17 @@ Set a simple UI and identity by defining a name for the web app and adding some 
 
 ### **State Management**
 
-Create the app state management using React Context and React Reducer
+Create the app state management using React Context and history library to manage the browse history
 
 Create custom hooks to create actions that will help us to manipulate the state.
+
+</br>
+
+### **Router**
+
+Create a router using React Context and React Reducer
+
+Create custom hooks and components such as _Link_ to manipulate the browse history.
 
 </br>
 
@@ -91,6 +101,14 @@ Design a schema in SQL to store the task list data. You can add the SQL code nee
 the schema to _schema.sql_. The schema should define all tables, columns, and constraints needed
 to store the task list data.
 
+</br>
+
+### **Biggest Challenges**
+
+* Design SQL schema since it was my first time playing with SQL.
+* Create the dynamic route paths, as these will depend on the name of the task groups.
+* Debugg. Find the origin of one bug which caused that the abstract of a group whose tasks depended on the tasks of another group to not update correctly.
+  
 </br>
 
 </br>

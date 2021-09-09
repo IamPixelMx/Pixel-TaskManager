@@ -1,12 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Layout } from "components";
 
 const ErrorView = (errorMsg) => (
-  <Layout>
+  <React.Fragment>
     <h1>Error</h1>
     <p className="bullet-text">{errorMsg}</p>
-  </Layout>
+  </React.Fragment>
 );
 
 export default ErrorView;
@@ -14,7 +13,7 @@ export default ErrorView;
 ErrorView.displayName = "ErrorView";
 
 ErrorView.defaultProps = {
-  errorMsg: "Sorry, there was an error. Please, try again",
+  errorMsg: "Sorry, there was an error. Please, refresh the page",
 };
 
 ErrorView.propTypes = {

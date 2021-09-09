@@ -1,23 +1,27 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { useActions } from "store";
+import { useRouter } from "router";
+import { Link } from "components";
 
 const TaskGroupInfo = ({ groupName, tasksCompleted, totalTasks }) => {
-  const { showTaskGroup } = useActions();
+  const router = useRouter();
+  const page = router[groupName]
 
   return (
     <div className="taskgroup-box">
-      <div
-        className="taskgroup-content"
-        onClick={() => showTaskGroup(groupName)}>
-        <i className="taskgroup-icon" />
-        <div className="taskgroup-info">
-          <p className="text-capitalize bullet-text">{groupName}</p>
-          <p className="text-light text-uppercase">
-            {`${tasksCompleted} of ${totalTasks} tasks complete`}
-          </p>
+      <Link to={page.path}>
+        <div
+          className="taskgroup-content"
+        >
+          <i className="taskgroup-icon" />
+          <div className="taskgroup-info">
+            <p className="text-capitalize bullet-text">{groupName}</p>
+            <p className="text-light text-uppercase">
+              {`${tasksCompleted} of ${totalTasks} tasks complete`}
+            </p>
+          </div>
         </div>
-      </div>
+      </Link>
     </div>
   );
 };

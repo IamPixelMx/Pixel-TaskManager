@@ -4,6 +4,6 @@ import App from './App';
 
 test('renders button to go home', () => {
   render(<App />);
-  const homeButton = screen.getByRole('button', {label:"home-button"})
+  const homeButton = screen.getByRole('link', { name: "home-link" })
   expect(homeButton).toBeInTheDocument();
 });
