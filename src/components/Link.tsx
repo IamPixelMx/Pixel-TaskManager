@@ -14,13 +14,12 @@ const Link = ({ to, children, onClick, className, ...props }: Props) => {
   const handleClick = (e: React.MouseEvent) => {
     e.preventDefault();
 
-    if (route.path === to) {
-      // If it's not a valid path function will not trigger.
-      return;
-    }
-    if (onClick) {
-      onClick(e);
-    }
+    // If it's not a valid new path the function will not trigger.
+    if (route.path === to) return;
+
+    if (onClick) onClick(e);
+
+    // add route to history
     history.push(to);
   };
 
