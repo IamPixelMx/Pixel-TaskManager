@@ -13,7 +13,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
     <React.Fragment>
       <nav>
         <Link to={initialRoutes.home.path}>
-          <img src="/logo.webp" alt="logo" className="logo" />
+          <img src="/logo.webp" alt="logo" className="pointer"/>
         </Link>
       </nav>
       <div className="container">{error ? <ErrorView errorMsg={errorMsg} /> : loading ? <LoadingView text= "Loading..." /> : children}</div>

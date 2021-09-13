@@ -8,6 +8,7 @@ html {
   color: #5a5a5a;
   background: #fff;
   font-family: Helvetica, sans-serif;
+  font-display: swap;
 }
 
 h1 {
@@ -43,16 +44,11 @@ p {
   justify-content: space-between;
 }
 
-.logo {
-  width: 70px;
-}
-
 .center {
   text-align: center;
 }
 
 .pointer,
-.logo,
 .btn-link,
 .taskgroup-content,
 .taskgroup-icon,
