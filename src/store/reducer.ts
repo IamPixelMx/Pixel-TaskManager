@@ -1,3 +1,4 @@
+import { StateTypes, DispatchType, TasksTypes } from "types";
 import {
   FETCH_TASKS_START,
   FETCH_TASKS_SUCCESS,
@@ -5,7 +6,7 @@ import {
   TOGGLE_TASK,
 } from "./constants";
 
-const reducer = (state, { type, payload = {} }) => {
+const reducer = (state: StateTypes, { type, payload = {} }: DispatchType) => {
   switch (type) {
     case FETCH_TASKS_START:
       return {
@@ -41,9 +42,9 @@ const reducer = (state, { type, payload = {} }) => {
   }
 };
 
-const getChildTasks = (tasks, id) => tasks.filter(({ dependencyIds }) => dependencyIds.includes(id));
+const getChildTasks = (tasks: Array<TasksTypes>, id: number) => tasks.filter(({ dependencyIds }) => dependencyIds.includes(id));
 
-const getNewTaskArray = (tasks, { id, completedAt }) => {
+const getNewTaskArray = (tasks: Array<TasksTypes>, { id, completedAt }: { id: number, completedAt: number | null }) => {
   const childTasksArr = getChildTasks(tasks, id);
   const childTaskIds = childTasksArr.length === 0 ? null : childTasksArr.map(({ id }) => id);
   const newTaskArray = tasks.map((task) =>

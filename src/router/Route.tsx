@@ -15,3 +15,5 @@ const Route = ({ path, children }: Props) => {
 }
 
 export default Route;
+
+Route.displayName = "RouteComponent";

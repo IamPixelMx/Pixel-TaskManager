@@ -2,18 +2,18 @@ import React, { useContext, useLayoutEffect, useState, createContext } from 'rea
 import { createBrowserHistory, Location, State } from 'history';
 import { NotFoundView } from "views";
 import { locationToRoute } from "utils";
-import { RoutesType } from './initialRoutes';
+import { RouteType } from 'types';
 
 const history = createBrowserHistory();
 
 const RouterContext = createContext({
-  route: locationToRoute(history),
+  route: locationToRoute(history)
 });
 
 const useRouter = () => useContext(RouterContext);
 
 const RouterProvider = ({ routeList, children }: {
-  routeList: RoutesType;
+  routeList: RouteType;
   children: React.ReactNode;
 }) => {
   const [route, setRoute] = useState(locationToRoute(history));

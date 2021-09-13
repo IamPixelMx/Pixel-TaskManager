@@ -1,6 +1,6 @@
-const getTaskGroupProgress = (taskGroupArr) => {
+const getTaskGroupProgress = (taskGroupArr: Array<any>) => {
   const tasksCompletedArr = taskGroupArr.filter(
-    ({ completedAt }) => completedAt
+    ({ completedAt } : {completedAt : number | null}) => completedAt
   );
 
   return {

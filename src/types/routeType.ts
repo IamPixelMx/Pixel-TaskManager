@@ -1,0 +1,1 @@
+export type RouteType = { [route: string]: { path: string } };

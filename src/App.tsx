@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { RouterProvider, initialRoutes, Route } from 'router';
+import { RouteType, TasksTypes } from "types";
 import { useStore, useActions } from "store";
 import { HomeView, GroupExpandedView } from "views";
 import { Layout } from "components";
@@ -14,8 +15,8 @@ const App = () => {
 
   const [routes, setRoutes] = useState(initialRoutes);
 
-  const setRoutesList = (tasksArr: Array<Object>) => {
-    const groupsRoutes: { [k: string]: { path: string } } = {};
+  const setRoutesList = (tasksArr: Array<TasksTypes>) => {
+    const groupsRoutes: RouteType = {};
     const groupsList = getGroupsList(tasksArr);
     groupsList.forEach((group: string) => { groupsRoutes[group] = { path: `/${group.toLowerCase().replace(" ", "-")}` } })
     const finalRoutesList = { ...initialRoutes, ...groupsRoutes };
@@ -40,7 +41,7 @@ const App = () => {
       <Layout>
         {Object.keys(routes).map(page => (
           <Route key={page} path={routes[page].path}>
-            {page === "home" ? <HomeView tasks={tasks} /> : <GroupExpandedView tasks={tasks} currentTaskGroup={page} />}
+            {page === "home" ? <HomeView tasks={tasks} /> : <GroupExpandedView tasks={tasks} taskGroup={page} />}
           </Route>
         ))}
       </Layout>

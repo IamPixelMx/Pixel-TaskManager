@@ -1,11 +1,10 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { initialRoutes } from 'router';
 import { useStore } from "store";
 import { LoadingView, ErrorView } from "views";
 import { Link } from "components"
 
-const Layout = ({ children }) => {
+const Layout = ({ children }: { children: React.ReactNode }) => {
   const {
     state: { loading, error, errorMsg },
   } = useStore();
@@ -13,11 +12,11 @@ const Layout = ({ children }) => {
   return (
     <React.Fragment>
       <nav>
-        <Link to={initialRoutes.home.path} role="link" aria-name="home-link">
+        <Link to={initialRoutes.home.path}>
           <img src="/logo.webp" alt="logo" className="logo" />
         </Link>
       </nav>
-      <div className="container">{error ? <ErrorView errorMsg={errorMsg} /> : loading ? <LoadingView /> : children}</div>
+      <div className="container">{error ? <ErrorView errorMsg={errorMsg} /> : loading ? <LoadingView text= "Loading..." /> : children}</div>
     </React.Fragment>
   );
 };
@@ -25,7 +24,3 @@ const Layout = ({ children }) => {
 export default Layout;
 
 Layout.displayName = "Layout";
-
-Layout.propTypes = {
-  children: PropTypes.node.isRequired,
-};

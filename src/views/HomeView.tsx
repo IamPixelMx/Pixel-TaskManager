@@ -1,19 +1,25 @@
 import React, { useState, useEffect } from "react";
-import PropTypes from "prop-types";
+import { TasksTypes, TaskGroupTypes } from "types";
 import { TaskGroupInfo } from "components";
 import { getGroupProgress, getGroupsList, getGroupTasks } from "utils";
 
-const HomeView = ({ tasks, title = "things to do" }) => {
-  const [groupsInfo, setGroupsInfo] = useState([]);
+type Props = {
+  tasks: Array<TasksTypes>;
+  title?: string;
+};
+
+const HomeView = ({ tasks, title = "things to do" }: Props) => {
+  const [groupsInfo, setGroupsInfo] = useState<Array<TaskGroupTypes>>([]);
 
   useEffect(() => {
     const getGroupsInfoArr = () => {
       const groupList = getGroupsList(tasks);
-      return groupList.map((group) => {
+      return groupList.map((group: string) => {
         const groupTasksArr = getGroupTasks(group, tasks);
         const groupProgress = getGroupProgress(groupTasksArr);
         return {
           groupName: group,
+          toPath: `/${group.toLowerCase().replace(" ", "-")}`,
           ...groupProgress,
         };
       });
@@ -26,8 +32,7 @@ const HomeView = ({ tasks, title = "things to do" }) => {
   return (
     <React.Fragment>
       <h1 className="text-capitalize">{title}</h1>
-      {groupsInfo.length &&
-        groupsInfo.map((props, i) => <TaskGroupInfo key={i} {...props} />)}
+      {groupsInfo.map(props => <TaskGroupInfo key={props.groupName} {...props} />)}
     </React.Fragment>
   );
 };
@@ -35,7 +40,3 @@ const HomeView = ({ tasks, title = "things to do" }) => {
 export default HomeView;
 
 HomeView.displayName = "HomeView";
-
-HomeView.propTypes = {
-  tasks: PropTypes.arrayOf(PropTypes.object).isRequired,
-};

@@ -75,19 +75,19 @@ Set a simple UI and identity by defining a name for the web app and adding some 
 
 </br>
 
-### **State Management**
-
-Create the app state management using React Context and history library to manage the browse history
-
-Create custom hooks to create actions that will help us to manipulate the state.
-
-</br>
-
 ### **Router**
 
 Create a router using React Context and React Reducer
 
 Create custom hooks and components such as _Link_ to manipulate the browse history.
+
+</br>
+
+### **State Management**
+
+Create the app state management using React Context and history library to manage the browse history
+
+Create custom hooks to create actions that will help us to manipulate the state.
 
 </br>
 

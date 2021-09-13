@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { AppContext } from "store";
+import { TasksTypes } from "types";
 
 import {
   FETCH_TASKS_START,
@@ -18,19 +19,19 @@ const useActions = () => {
         type: FETCH_TASKS_START,
       }),
 
-    fetchTasksSuccess: (payload) =>
+    fetchTasksSuccess: (payload: Array<TasksTypes>) =>
       dispatch({
         type: FETCH_TASKS_SUCCESS,
         payload,
       }),
 
-    fetchTasksFail: (payload) =>
+    fetchTasksFail: (payload: Object) =>
       dispatch({
         type: FETCH_TASKS_FAIL,
         payload,
       }),
 
-    toggleTask: (payload) => dispatch({ type: TOGGLE_TASK, payload }),
+    toggleTask: (payload: { id: number, completedAt: number | null }) => dispatch({ type: TOGGLE_TASK, payload }),
   };
 };
 

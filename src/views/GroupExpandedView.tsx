@@ -1,25 +1,31 @@
 import React, { useEffect, useState } from "react";
+import { TasksTypes } from "types";
 import { initialRoutes } from "router";
-import PropTypes from "prop-types";
 import { TaskItem, Link } from "components";
 import { getDependecyTasks, getGroupTasks } from "utils";
 
-const GroupExpandedView = ({
-  tasks,
-  currentTaskGroup,
-  linkText = "all groups",
-}) => {
-  const [currentTasks, setCurrentTasks] = useState([]);
+type Props = {
+  tasks: Array<TasksTypes>;
+  taskGroup: string;
+  linkText?: string;
+};
 
-  const checkIfTaskIsLocked = (dependencyTasks) =>
+const GroupExpandedView = React.memo(({
+  tasks,
+  taskGroup,
+  linkText = "all groups",
+}: Props) => {
+  const [currentTasks, setCurrentTasks] = useState<Array<TasksTypes & { isLocked: boolean }>>([]);
+
+  const checkIfTaskIsLocked = (dependencyTasks: Array<TasksTypes>) =>
     dependencyTasks.some(({ completedAt }) => completedAt === null);
 
   useEffect(() => {
 
-    const currentGroupTasks = getGroupTasks(currentTaskGroup, tasks);
+    const currentGroupTasks = getGroupTasks(taskGroup, tasks);
 
     const currentGroupTasksWithStatus = () =>
-      currentGroupTasks.map((task) => {
+      currentGroupTasks.map((task: TasksTypes) => {
         const dependencyTasks = getDependecyTasks(task, tasks);
         return dependencyTasks === null
           ? { ...task, isLocked: false }
@@ -27,30 +33,24 @@ const GroupExpandedView = ({
       });
 
     setCurrentTasks(currentGroupTasksWithStatus);
-  }, [tasks, currentTaskGroup]);
+  }, [tasks, taskGroup]);
 
   return (
     <React.Fragment>
       <div className="header">
-        <h1 className="text-capitalize">{currentTaskGroup}</h1>
+        <h1 className="text-capitalize">{taskGroup}</h1>
         <Link to={initialRoutes.home.path} className="btn-link text-uppercase">
           {linkText}
         </Link>
       </div>
       <ul className="todo-list">
         {currentTasks.length &&
-          currentTasks.map((task) => <TaskItem key={task.id} {...task} />)}
+          currentTasks.map(props => <TaskItem key={props.id} {...props} />)}
       </ul>
     </React.Fragment>
   );
-};
+});
 
 export default GroupExpandedView;
 
 GroupExpandedView.displayName = "GroupExpandedView";
-
-GroupExpandedView.propTypes = {
-  tasks: PropTypes.arrayOf(PropTypes.object).isRequired,
-  currentTaskGroup: PropTypes.string.isRequired,
-  linkText: PropTypes.string,
-};

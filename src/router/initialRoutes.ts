@@ -1,10 +1,6 @@
-export type RoutesType = { [route: string]: { path: string } };
+import { RouteType } from "types";
 
-export type RoutesListType = {
-  [key: string]: RoutesType;
-}
-
-export const initialRoutes: RoutesType = {
+export const initialRoutes: RouteType = {
   home: {
     path: '/',
   },

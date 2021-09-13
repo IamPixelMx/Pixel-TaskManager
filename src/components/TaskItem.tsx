@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useCallback } from "react";
-import PropTypes from "prop-types";
+import { TasksTypes } from "types";
 import { useActions } from "store";
 
-const TaskItem = ({ id, task, completedAt, isLocked }) => {
+const TaskItem = ({ id, task, completedAt, isLocked }: TasksTypes & { isLocked: boolean }) => {
   const [isChecked, setIsChecked] = useState(Boolean(completedAt));
   const { toggleTask } = useActions();
 
@@ -18,7 +18,7 @@ const TaskItem = ({ id, task, completedAt, isLocked }) => {
     []
   );
 
-  const onChange = (e) => {
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { checked } = e.target;
     toggleTaskNcheck(id, checked);
   };
@@ -29,9 +29,9 @@ const TaskItem = ({ id, task, completedAt, isLocked }) => {
 
   return (
     <li>
-      <label className="task-wrapper" htmlFor={id}>
+      <label className="task-wrapper" htmlFor={id.toString()}>
         <input
-          id={id}
+          id={id.toString()}
           type="checkbox"
           checked={isChecked}
           disabled={isLocked}
@@ -46,10 +46,3 @@ const TaskItem = ({ id, task, completedAt, isLocked }) => {
 export default TaskItem;
 
 TaskItem.displayName = "TaskItem";
-
-TaskItem.propTypes = {
-  id: PropTypes.number.isRequired,
-  task: PropTypes.string.isRequired,
-  completedAt: PropTypes.number,
-  isLocked: PropTypes.bool.isRequired,
-};
