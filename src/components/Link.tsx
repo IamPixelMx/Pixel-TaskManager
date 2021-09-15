@@ -8,7 +8,7 @@ type Props = {
   className?: string;
 };
 
-const Link = ({ to, children, onClick, className, ...props }: Props) => {
+const Link = React.memo(({ to, children, onClick, className = "", ...rest }: Props) => {
   const { route } = useRouter();
 
   const handleClick = (e: React.MouseEvent) => {
@@ -24,10 +24,10 @@ const Link = ({ to, children, onClick, className, ...props }: Props) => {
   };
 
   return (
-    <a className={`pointer ${className}`}{...props} onClick={handleClick}>
+    <a className={`pointer ${className}`} onClick={handleClick} {...rest} >
       {children}
     </a>
   );
-}
+});
 
 export default Link;

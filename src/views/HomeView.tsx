@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { TasksTypes, TaskGroupTypes } from "types";
+import { TaskGroupTypes } from "types";
+import { useStore } from "store";
 import { TaskGroupInfo } from "components";
 import { getGroupProgress, getGroupsList, getGroupTasks } from "utils";
 
 type Props = {
-  tasks: Array<TasksTypes>;
   title?: string;
 };
 
-const HomeView = ({ tasks, title = "things to do" }: Props) => {
+const HomeView = ({ title = "things to do" }: Props) => {
+  const { state: { tasks } } = useStore();
   const [groupsInfo, setGroupsInfo] = useState<Array<TaskGroupTypes>>([]);
 
   useEffect(() => {
@@ -32,7 +33,7 @@ const HomeView = ({ tasks, title = "things to do" }: Props) => {
   return (
     <React.Fragment>
       <h1 className="text-capitalize">{title}</h1>
-      {groupsInfo.map(props => <TaskGroupInfo key={props.groupName} {...props} />)}
+      {groupsInfo.map(props => <TaskGroupInfo key={`${props.groupName}-info-component`} {...props} />)}
     </React.Fragment>
   );
 };

@@ -12,7 +12,7 @@ const TaskGroupInfo = React.memo(({ groupName, tasksCompleted, totalTasks, toPat
         <div className="taskgroup-info">
           <p className="text-capitalize bullet-text">{groupName}</p>
           <p className="text-light text-uppercase">
-            {`${tasksCompleted} of ${totalTasks} tasks complete`}
+            {`${tasksCompleted} of ${totalTasks} tasks completed`}
           </p>
         </div>
       </div>

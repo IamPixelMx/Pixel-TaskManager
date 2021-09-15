@@ -1,6 +1,6 @@
 import { TasksTypes } from "types";
 
-const getDependecyTasks = (task : TasksTypes, tasksArr: Array<TasksTypes>) => {
+const getParentTasks = (task : TasksTypes, tasksArr: Array<TasksTypes>) => {
   const { dependencyIds } = task;
   if (dependencyIds.length === 0) {
     return null;
@@ -9,4 +9,4 @@ const getDependecyTasks = (task : TasksTypes, tasksArr: Array<TasksTypes>) => {
   }
 };
 
-export default getDependecyTasks;
+export default getParentTasks;

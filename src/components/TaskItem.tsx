@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from "react";
 import { TasksTypes } from "types";
 import { useActions } from "store";
 
-const TaskItem = ({ id, task, completedAt, isLocked }: TasksTypes & { isLocked: boolean }) => {
+const TaskItem = React.memo(({ id, task, completedAt, isLocked }: TasksTypes & { isLocked: boolean }) => {
   const [isChecked, setIsChecked] = useState(Boolean(completedAt));
   const { toggleTask } = useActions();
 
@@ -41,7 +41,7 @@ const TaskItem = ({ id, task, completedAt, isLocked }: TasksTypes & { isLocked: 
       </label>
     </li>
   );
-};
+});
 
 export default TaskItem;
 

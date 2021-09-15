@@ -1,35 +1,34 @@
 import React, { useEffect, useState } from "react";
 import { TasksTypes } from "types";
+import { useStore } from "store";
 import { initialRoutes } from "router";
 import { TaskItem, Link } from "components";
-import { getDependecyTasks, getGroupTasks } from "utils";
+import { getParentTasks, getGroupTasks } from "utils";
 
 type Props = {
-  tasks: Array<TasksTypes>;
   taskGroup: string;
   linkText?: string;
 };
 
-const GroupExpandedView = React.memo(({
-  tasks,
+const GroupExpandedView = ({
   taskGroup,
   linkText = "all groups",
 }: Props) => {
+  const { state: { tasks } } = useStore();
   const [currentTasks, setCurrentTasks] = useState<Array<TasksTypes & { isLocked: boolean }>>([]);
 
-  const checkIfTaskIsLocked = (dependencyTasks: Array<TasksTypes>) =>
-    dependencyTasks.some(({ completedAt }) => completedAt === null);
+  const checkParentTasksStatus = (parentTasks: Array<TasksTypes>) =>
+    parentTasks.some(({ completedAt }) => completedAt === null);
 
   useEffect(() => {
-
     const currentGroupTasks = getGroupTasks(taskGroup, tasks);
 
     const currentGroupTasksWithStatus = () =>
       currentGroupTasks.map((task: TasksTypes) => {
-        const dependencyTasks = getDependecyTasks(task, tasks);
-        return dependencyTasks === null
+        const parentTasks = getParentTasks(task, tasks);
+        return parentTasks === null
           ? { ...task, isLocked: false }
-          : { ...task, isLocked: checkIfTaskIsLocked(dependencyTasks) };
+          : { ...task, isLocked: checkParentTasksStatus(parentTasks) };
       });
 
     setCurrentTasks(currentGroupTasksWithStatus);
@@ -44,12 +43,11 @@ const GroupExpandedView = React.memo(({
         </Link>
       </div>
       <ul className="todo-list">
-        {currentTasks.length &&
-          currentTasks.map(props => <TaskItem key={props.id} {...props} />)}
+        {currentTasks.map(props => <TaskItem key={props.id} {...props} />)}
       </ul>
     </React.Fragment>
   );
-});
+};
 
 export default GroupExpandedView;
 
