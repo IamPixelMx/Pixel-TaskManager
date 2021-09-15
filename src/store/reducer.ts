@@ -4,6 +4,7 @@ import {
   FETCH_TASKS_SUCCESS,
   FETCH_TASKS_FAIL,
   TOGGLE_TASK,
+  ADD_TASK,
 } from "./constants";
 
 const reducer = (state: StateTypes, { type, payload = {} }: DispatchType) => {
@@ -35,6 +36,15 @@ const reducer = (state: StateTypes, { type, payload = {} }: DispatchType) => {
       return {
         ...state,
         tasks: getNewTaskArray(state.tasks, payload),
+      };
+
+    case ADD_TASK:
+      return {
+        ...state,
+        tasks: [
+          ...state.tasks,
+          payload,
+      ],
       };
 
     default:

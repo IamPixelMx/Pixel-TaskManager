@@ -7,6 +7,7 @@ import {
   FETCH_TASKS_SUCCESS,
   FETCH_TASKS_FAIL,
   TOGGLE_TASK,
+  ADD_TASK,
 } from "./constants";
 
 const useStore = () => useContext(AppContext);
@@ -32,6 +33,8 @@ const useActions = () => {
       }),
 
     toggleTask: (payload: { id: number, completedAt: number | null }) => dispatch({ type: TOGGLE_TASK, payload }),
+
+    addTask: (payload: TasksTypes) => dispatch({ type: ADD_TASK, payload }),
   };
 };
 
